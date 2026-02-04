@@ -27,10 +27,21 @@
     "step": {
       "edit": {
         "title": "Modify settings",
+        "description": "Adjust the instances and update interval.",
         "data": {
           "instances": "Instances",
           "scan_interval": "Update interval (seconds)"
         }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": {
+        "name": "Status"
+      },
+      "players": {
+        "name": "Players"
       }
     }
   }
