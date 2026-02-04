@@ -1,0 +1,37 @@
+{
+  "title": "CubeCoders AMP",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to AMP",
+        "description": "Enter the connection information for your AMP server.",
+        "data": {
+          "host": "Server address",
+          "api_key": "API Key"
+        }
+      },
+      "select_instances": {
+        "title": "Select instances",
+        "description": "Choose which AMP instances to integrate.",
+        "data": {
+          "instances": "Instances",
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to AMP. Check the address and API Key."
+    }
+  },
+  "options": {
+    "step": {
+      "edit": {
+        "title": "Modify settings",
+        "data": {
+          "instances": "Instances",
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  }
+}
