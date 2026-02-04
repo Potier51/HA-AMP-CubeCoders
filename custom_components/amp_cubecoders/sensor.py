@@ -13,10 +13,18 @@ async def async_setup_entry(hass: HomeAssistant, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
 
+    # Récupérer les instances sélectionnées par l’utilisateur
+    selected_instances = entry.options.get("instances", [])
+
     entities = []
 
-    # Pour chaque instance AMP, créer les entités
+    # Pour chaque instance AMP détectée par le coordinator
     for instance_id, instance_data in coordinator.data.items():
+
+        # Ne créer des entités que pour les instances sélectionnées
+        if instance_id not in selected_instances:
+            continue
+
         info = instance_data["info"]
         name = info.get("FriendlyName", instance_id)
 
