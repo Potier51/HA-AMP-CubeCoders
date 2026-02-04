@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 
-from .const import DOMAIN
+from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
 from .api import AMPApi
 from .coordinator import AMPDataCoordinator
 
@@ -12,7 +12,7 @@ PLATFORMS = ["sensor"]
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType):
-    """Set up the integration via YAML (not used)."""
+    """YAML setup (unused)."""
     return True
 
 
@@ -22,20 +22,20 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     host = entry.data["host"]
     api_key = entry.data["api_key"]
 
-    api = AMPApi(host, api_key)
-    coordinator = AMPDataCoordinator(hass, api)
+    # Récupération de l’intervalle dynamique
+    scan_interval = entry.options.get("scan_interval", DEFAULT_SCAN_INTERVAL)
 
-    # First refresh to populate data
+    api = AMPApi(host, api_key)
+    coordinator = AMPDataCoordinator(hass, api, scan_interval)
+
     await coordinator.async_config_entry_first_refresh()
 
-    # Store objects in hass.data
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = {
         "api": api,
         "coordinator": coordinator,
     }
 
-    # Forward setup to platforms
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     return True
