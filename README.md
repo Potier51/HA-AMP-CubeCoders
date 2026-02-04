@@ -1,35 +1,26 @@
----
-
 🧩 Intégration Home Assistant pour CubeCoders AMP
 
-CubeCoders AMP – Home Assistant Integration
-
 Intégration personnalisée permettant de connecter CubeCoders AMP à Home Assistant.  
-Elle offre une découverte automatique des instances, des capteurs de statut et de joueurs, ainsi qu’une interface de configuration moderne inspirée de l’intégration Proxmox.
+Elle offre une découverte automatique des instances, des capteurs de statut et de joueurs, ainsi qu’une interface de configuration.
 
 ---
 
 ✨ Fonctionnalités
 
 - 🔍 Découverte automatique des instances AMP
-- 🧩 Sélection des instances à intégrer (comme Proxmox)
+- 🧩 Sélection des instances à intégrer
 - 📡 Intervalle de mise à jour configurable
 - 📊 Capteurs intégrés :
   - Statut de l’instance
   - Nombre de joueurs connectés
 - 🔧 Options Flow pour modifier les paramètres après installation
-- ⚙️ Architecture moderne basée sur :
-  - DataUpdateCoordinator
-  - Config Flow
-  - Options Flow
-  - API asynchrone
 
 ---
 
 📦 Installation
 
 🔹 Via HACS (recommandé)
-(Disponible lorsque tu publieras ton dépôt dans HACS Community Store)
+(Non disponible avant publication)
 
 1. Ouvrir HACS → Intégrations
 2. Cliquer sur Custom repositories
