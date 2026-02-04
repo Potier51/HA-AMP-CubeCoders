@@ -27,10 +27,21 @@
     "step": {
       "edit": {
         "title": "Modifier les paramètres",
+        "description": "Ajustez les instances et l’intervalle de mise à jour.",
         "data": {
           "instances": "Instances",
           "scan_interval": "Intervalle de mise à jour (secondes)"
         }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "status": {
+        "name": "Statut"
+      },
+      "players": {
+        "name": "Joueurs"
       }
     }
   }
