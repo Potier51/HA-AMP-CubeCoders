@@ -1,5 +1,23 @@
 🧩 Intégration Home Assistant pour CubeCoders AMP
 
+<p align="center">
+  <a href="https://github.com/Potier51/HA-AMP-CubeCoders/releases">
+    <img src="https://img.shields.io/github/v/release/Potier51/HA-AMP-CubeCoders?style=for-the-badge" alt="Latest Release">
+  </a>
+  <a href="https://github.com/Potier51/HA-AMP-CubeCoders">
+    <img src="https://img.shields.io/github/license/Potier51/HA-AMP-CubeCoders?style=for-the-badge" alt="License">
+  </a>
+  <a href="https://github.com/hacs/integration">
+    <img src="https://img.shields.io/badge/HACS-Custom-orange?style=for-the-badge" alt="HACS Custom">
+  </a>
+  <a href="https://github.com/Potier51/HA-AMP-CubeCoders/stargazers">
+    <img src="https://img.shields.io/github/stars/Potier51/HA-AMP-CubeCoders?style=for-the-badge" alt="Stars">
+  </a>
+  <a href="https://github.com/Potier51/HA-AMP-CubeCoders/issues">
+    <img src="https://img.shields.io/github/issues/Potier51/HA-AMP-CubeCoders?style=for-the-badge" alt="Issues">
+  </a>
+</p>
+
 Intégration personnalisée permettant de connecter CubeCoders AMP à Home Assistant.  
 Elle offre une découverte automatique des instances, des capteurs de statut et de joueurs, ainsi qu’une interface de configuration.
 
