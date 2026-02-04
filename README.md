@@ -1,6 +1,6 @@
 ---
 
-🧩 README.md — Intégration Home Assistant pour CubeCoders AMP
+🧩 Intégration Home Assistant pour CubeCoders AMP
 
 CubeCoders AMP – Home Assistant Integration
 
