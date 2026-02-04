@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import AMPApi
-from .const import DOMAIN, DEFAULT_SCAN_INTERVAL
+from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -15,13 +15,13 @@ _LOGGER = logging.getLogger(__name__)
 class AMPDataCoordinator(DataUpdateCoordinator):
     """Coordinator centralisant les données AMP."""
 
-    def __init__(self, hass: HomeAssistant, api: AMPApi):
-        """Initialise le coordinator."""
+    def __init__(self, hass: HomeAssistant, api: AMPApi, scan_interval: int):
+        """Initialise le coordinator avec un intervalle dynamique."""
         super().__init__(
             hass,
             _LOGGER,
             name="CubeCoders AMP Coordinator",
-            update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
+            update_interval=timedelta(seconds=scan_interval),
         )
 
         self.api = api
@@ -30,16 +30,13 @@ class AMPDataCoordinator(DataUpdateCoordinator):
         """Récupère les données depuis AMP."""
 
         try:
-            # 1. Liste des instances
             instances = await self.api.list_instances()
             instance_list = instances.get("instances", [])
 
             data = {}
 
-            # 2. Pour chaque instance, récupérer les infos
             for inst in instance_list:
                 instance_id = inst.get("InstanceID")
-
                 if not instance_id:
                     continue
 
