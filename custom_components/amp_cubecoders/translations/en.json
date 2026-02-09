@@ -7,7 +7,8 @@
         "description": "Enter the connection information for your AMP server.",
         "data": {
           "host": "Server address",
-          "api_key": "API Key"
+          "username": "Username",
+          "password": "Password"
         }
       },
       "select_instances": {
@@ -20,7 +21,7 @@
       }
     },
     "error": {
-      "cannot_connect": "Unable to connect to AMP. Check the address and API Key."
+      "cannot_connect": "Unable to connect to AMP. Check the address, username and password."
     }
   },
   "options": {

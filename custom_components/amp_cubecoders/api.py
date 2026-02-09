@@ -8,17 +8,21 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class AMPApi:
-    """Simple async API wrapper for CubeCoders AMP."""
+    """Simple async API wrapper for CubeCoders AMP.
 
-    def __init__(self, host: str, api_key: str):
+    Authenticate using username/password (not API key).
+    """
+
+    def __init__(self, host: str, username: str, password: str):
         self._host = host.rstrip("/")
-        self._api_key = api_key
+        self._username = username
+        self._password = password
 
     async def _post(self, endpoint: str, payload: dict | None = None) -> dict:
         """Internal helper to send POST requests to AMP."""
         url = f"http://{self._host}/API/{endpoint}"
 
-        data = {"APIKey": self._api_key}
+        data = {"Username": self._username, "Password": self._password}
         if payload:
             data.update(payload)
 

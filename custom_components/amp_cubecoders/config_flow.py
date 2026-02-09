@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import voluptuous as vol
+from homeassistant.helpers import config_validation as cv
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult
@@ -17,9 +18,9 @@ from .api import AMPApi
 # Helpers
 # ---------------------------------------------------------
 
-async def validate_connection(hass: HomeAssistant, host: str, api_key: str):
+async def validate_connection(hass: HomeAssistant, host: str, username: str, password: str):
     """Test la connexion AMP et retourne la liste des instances."""
-    api = AMPApi(host, api_key)
+    api = AMPApi(host, username, password)
     try:
         data = await api.list_instances()
         return data.get("instances", [])
@@ -38,21 +39,24 @@ class AMPConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     def __init__(self):
         self.host = None
-        self.api_key = None
+        self.username = None
+        self.password = None
         self.instances = None
 
     async def async_step_user(self, user_input=None) -> FlowResult:
-        """Étape 1 : demander IP + API Key."""
+        """Étape 1 : demander IP + identifiants (username/password)."""
         errors = {}
 
         if user_input is not None:
             host = user_input["host"]
-            api_key = user_input["api_key"]
+            username = user_input["username"]
+            password = user_input["password"]
 
             try:
-                instances = await validate_connection(self.hass, host, api_key)
+                instances = await validate_connection(self.hass, host, username, password)
                 self.host = host
-                self.api_key = api_key
+                self.username = username
+                self.password = password
                 self.instances = instances
                 return await self.async_step_select_instances()
 
@@ -62,7 +66,8 @@ class AMPConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         schema = vol.Schema(
             {
                 vol.Required("host"): str,
-                vol.Required("api_key"): str,
+                vol.Required("username"): str,
+                vol.Required("password"): str,
             }
         )
 
@@ -90,7 +95,8 @@ class AMPConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 title=f"CubeCoders AMP ({self.host})",
                 data={
                     "host": self.host,
-                    "api_key": self.api_key,
+                    "username": self.username,
+                    "password": self.password,
                 },
                 options={
                     "instances": selected,
@@ -144,7 +150,11 @@ class AMPOptionsFlow(config_entries.OptionsFlow):
         current_interval = self.entry.options.get("scan_interval", DEFAULT_SCAN_INTERVAL)
 
         # Re-tester la connexion pour récupérer la liste des instances
-        api = AMPApi(self.entry.data["host"], self.entry.data["api_key"])
+        api = AMPApi(
+            self.entry.data["host"],
+            self.entry.data.get("username"),
+            self.entry.data.get("password"),
+        )
         try:
             data = await api.list_instances()
             instances = data.get("instances", [])

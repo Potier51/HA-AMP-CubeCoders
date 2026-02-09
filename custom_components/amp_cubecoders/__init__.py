@@ -20,12 +20,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up CubeCoders AMP from a config entry."""
 
     host = entry.data["host"]
-    api_key = entry.data["api_key"]
+    username = entry.data.get("username")
+    password = entry.data.get("password")
 
     # Récupération de l’intervalle dynamique
     scan_interval = entry.options.get("scan_interval", DEFAULT_SCAN_INTERVAL)
 
-    api = AMPApi(host, api_key)
+    api = AMPApi(host, username, password)
     coordinator = AMPDataCoordinator(hass, api, scan_interval)
 
     await coordinator.async_config_entry_first_refresh()
