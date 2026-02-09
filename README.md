@@ -74,7 +74,8 @@ dans :
 3. Rechercher CubeCoders AMP
 4. Entrer :
    - Adresse du serveur AMP
-   - API Key
+   - Nom d'utilisateur
+   - Mot de passe
 5. L’intégration teste automatiquement la connexion
 6. Sélectionner les instances à intégrer
 7. Choisir l’intervalle de mise à jour
@@ -107,12 +108,11 @@ Paramètres → Appareils & Services → CubeCoders AMP → Configurer
 
 🔐 Permissions nécessaires
 
-L’intégration utilise uniquement :
+L’intégration utilise :
 
 - l’adresse du serveur AMP  
-- une API Key  
-
-Aucune autre permission n’est requise.
+- Un utilisateur (il est conseillé d'en avoir un dédié, ainsi qu'un profil rôles)
+- Un mot de passe ( 40 caractères sont pris en charges par AMP)
 
 ---
 
@@ -122,7 +122,8 @@ Aucune autre permission n’est requise.
 Causes possibles :
 
 - Mauvaise adresse IP ou port
-- API Key incorrecte
+- Nom d'utilisateur incorrect
+- Mot de passe incorrect
 - AMP ne répond pas
 - Pare-feu ou NAT bloquant l’accès
 

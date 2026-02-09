@@ -13,7 +13,7 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ---
 
-## [1.0.0] - 2026-02-04
+## [0.1.0] - 2026-02-04
 ### Added
 - Première version publique de l’intégration CubeCoders AMP pour Home Assistant
 - Découverte automatique des instances AMP
@@ -33,3 +33,16 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ### Changed
 - Intervalle de mise à jour désormais configurable via l’UI
+
+---
+
+## [0.2.0] - 2026-02-09
+### Changed
+- **BREAKING** : Migration de l'authentification API Key → Username/Password
+  - L'intégration demande désormais le nom d'utilisateur et mot de passe au lieu d'une clé API
+  - Les configurations existantes devront être réparées avec les nouveaux identifiants
+- Mise à jour complète de la documentation et des traductions (FR/EN)
+
+### Updated
+- Messages d'erreur pour refléter la nouvelle authentification
+- Interface de configuration (labels dans les formulaires)
